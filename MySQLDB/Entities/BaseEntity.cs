@@ -5,11 +5,11 @@ namespace MySQLDB.Entities
     public abstract class CrudEntity : BaseEntity
     {
         [Required]
-        public DateTime DateCreated { get; set; }
+        public DateTime CreatedAt { get; set; }
 
-        public DateTime? DateUpdated { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
-        public DateTime? DateDeleted { get; set; }
+        public DateTime? DeletedAt { get; set; }
     }
 
     public abstract class BaseEntity

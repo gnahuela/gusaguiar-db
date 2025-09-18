@@ -6,9 +6,7 @@ namespace MySQLDB.Entities
     [Table("UserCampaign")]
     public class UserCampaign : CrudEntity
     {
-        public int? UserId { get; set; }
-
-        public int? LeadId { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         public int CampaignId { get; set; }
@@ -20,8 +18,6 @@ namespace MySQLDB.Entities
         public DateTime? CompletedOn { get; set; }
 
         public User User { get; set; }
-
-        public Lead Lead { get; set; }
 
         public Campaign Campaign { get; set; }
 

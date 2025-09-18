@@ -5,20 +5,7 @@ namespace MySQLDB.Persistance
 {
     public class CDotsContext : DbContext
     {
-        public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<UserToUser> Relation { get; set; }
-        public DbSet<Lead> Leads { get; set; }
-        public DbSet<LeadHistory> LeadHisotory { get; set; }
-        public DbSet<Campaign> Campaigns { get; set; }
-        public DbSet<UserCampaign> UserCampaigns { get; set; }
-        public DbSet<UserCampaignEmail> CampaignEmailHistory { get; set; }
-        public DbSet<AppNotification> AppNotifications { get; set; }
-        public DbSet<UserActivityRating> UserActivityRatings { get; set; }
-        public DbSet<UserActivityDefinition> UserActivityDefinitions { get; set; }
-
-        public DbSet<UserMeditationRevelation> UserMeditationRevelations { get; set; }
 
         public CDotsContext() : base()
         {
@@ -35,10 +22,6 @@ namespace MySQLDB.Persistance
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Lead>()
-                .HasIndex(l => l.Email)
-                .IsUnique();
-
             modelBuilder.Entity<User>()
                 .HasIndex(l => l.Email)
                 .IsUnique();
@@ -46,15 +29,6 @@ namespace MySQLDB.Persistance
             modelBuilder.Entity<User>()
                 .HasIndex(l => l.Username)
                 .IsUnique();
-
-            modelBuilder.Entity<UserCampaign>(entity =>
-            {
-                entity.ToTable("UserCampaign", table =>
-                {
-                    table.HasCheckConstraint("CK_UserCampaign_UserOrLead",
-                        "UserId IS NOT NULL OR LeadId IS NOT NULL");
-                });
-            });
 
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
@@ -70,7 +44,7 @@ namespace MySQLDB.Persistance
                         .Property(prop.Name)
                         .HasColumnType("DATETIME");
 
-                    if (prop.Name == "DateCreated")
+                    if (prop.Name == "CreatedAt")
                     {
                         entity
                             .Property(prop.Name)
