@@ -27,24 +27,14 @@ namespace MySQLDB.Persistance
                 IsVerified = true,
             };
 
-            var superadmin = new User
-            {
-                Email = "super@super.com",
-                Password = "1b3231655cebb7a1f783eddf27d254ca",
-                Username = "Super",
-                Id = SUPER,
-                IsVerified = true,
-            };
-
             _modelBuilder.Entity<User>().HasData(gnahuela);
-            _modelBuilder.Entity<User>().HasData(superadmin);
 
             var roles = new List<Role>()
             {
                 new Role
                 {
                     Id = 1,
-                    RoleName = "SuperAdmin"
+                    RoleName = "Super"
                 },
                 new Role
                 {
@@ -59,7 +49,7 @@ namespace MySQLDB.Persistance
                 new Role
                 {
                     Id = 4,
-                    RoleName = "Coach"
+                    RoleName = "Premium"
                 }
             };
 
@@ -68,30 +58,14 @@ namespace MySQLDB.Persistance
                 _modelBuilder.Entity<Role>().HasData(role);
             }
 
-            var coach = new UserToUser
-            {
-                Id = 1,
-                UserFromId = 2,
-                UserToId = 1,
-                RoleId = 4
-            };
-
-            _modelBuilder.Entity<UserToUser>().HasData(coach);
-
             var userRoles = new List<UserRole>
             {
                 new UserRole
                 {
                     Id = 1,
                     UserId = 1,
-                    RoleId = 3
-                },
-                new UserRole
-                {
-                    Id = 2,
-                    UserId = 2,
                     RoleId = 1
-                },
+                }
             };
 
             foreach (var role in userRoles)
