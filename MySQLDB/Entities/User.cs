@@ -7,18 +7,26 @@ namespace MySQLDB.Entities
     public class User : CrudEntity
     {
         [Required]
+        [MaxLength(100)]
         public string Username { get; set; }
 
         [Required]
         public string Password { get; set; }
 
         [Required]
+        [MaxLength(255)]
         public string Email { get; set; }
 
+        [MaxLength(100)]
+        public string? Nick { get; set; }
+
+        [MaxLength(200)]
         public string? Name { get; set; }
 
+        [MaxLength(200)]
         public string? FirstNames { get; set; }
 
+        [MaxLength(200)]
         public string? LastNames { get; set; }
 
         public bool IsJustLead { get; set; }
