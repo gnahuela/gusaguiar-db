@@ -29,6 +29,8 @@ namespace MySQLDB.Entities
         [MaxLength(200)]
         public string? LastNames { get; set; }
 
+        public string? Subscriptions { get; set; }
+
         public bool IsJustLead { get; set; }
 
         public bool IsVerified { get; set; }
