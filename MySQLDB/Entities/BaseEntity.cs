@@ -1,7 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace MySQLDB.Entities
 {
+    [Index(nameof(Code), IsUnique = true)]
+    public abstract class CodeEntity : BaseEntity
+    {
+        [Required]
+        public string Code { get; set; }
+    }
+
     public abstract class CrudEntity : BaseEntity
     {
         [Required]

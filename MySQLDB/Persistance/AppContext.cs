@@ -9,6 +9,22 @@ namespace MySQLDB.Persistance
 
         public DbSet<TrackLog> TrackLogs { get; set; }
 
+        public DbSet<Product> Products { get; set; }
+
+        public DbSet<ProductItem> ProductItems { get; set; }
+
+        public DbSet<UserProduct> UserProducts { get; set; }
+
+        public DbSet<UserProductItem> UserProductItems { get; set; }
+
+        #region Es
+
+        public DbSet<EsProduct> EsProducts { get; set; }
+
+        public DbSet<EsProductItem> EsProductItems { get; set; }
+
+        #endregion
+
         public CDotsContext() : base()
         {
         }
@@ -30,6 +46,14 @@ namespace MySQLDB.Persistance
 
             modelBuilder.Entity<User>()
                 .HasIndex(l => l.Username)
+                .IsUnique();
+
+            modelBuilder.Entity<UserProductItem>()
+                .HasIndex(upi => new { upi.UserId, upi.ProductItemId })
+                .IsUnique();
+
+            modelBuilder.Entity<UserProduct>()
+                .HasIndex(upi => new { upi.UserId, upi.ProductId })
                 .IsUnique();
 
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
