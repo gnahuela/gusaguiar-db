@@ -12,6 +12,11 @@ namespace MySQLDB.Entities
         [MaxLength(100)]
         public string Type { get; set; }
 
+        [MaxLength(200)]
+        public string Category { get; set; }
+
+        public DateTime? ValidTo { get; set; }
+
         public string? Description { get; set; }
     }
 

@@ -17,6 +17,8 @@ namespace MySQLDB.Persistance
 
         public DbSet<UserProductItem> UserProductItems { get; set; }
 
+        public DbSet<UserEmail> UserEmails { get; set; }
+
         #region Es
 
         public DbSet<EsProduct> EsProducts { get; set; }
@@ -54,6 +56,10 @@ namespace MySQLDB.Persistance
 
             modelBuilder.Entity<UserProduct>()
                 .HasIndex(upi => new { upi.UserId, upi.ProductId })
+                .IsUnique();
+
+            modelBuilder.Entity<UserEmail>()
+                .HasIndex(upi => new { upi.UserId, upi.Step, upi.Code })
                 .IsUnique();
 
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
