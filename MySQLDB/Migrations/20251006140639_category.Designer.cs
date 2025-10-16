@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MySQLDB.Persistance;
 
@@ -10,9 +11,11 @@ using MySQLDB.Persistance;
 namespace MySQLDB.Migrations
 {
     [DbContext(typeof(CDotsContext))]
-    partial class CDotsContextModelSnapshot : ModelSnapshot
+    [Migration("20251006140639_category")]
+    partial class category
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -243,59 +246,6 @@ namespace MySQLDB.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MySQLDB.Entities.Subscription", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(333)
-                        .HasColumnType("varchar(333)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("DATETIME")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<string>("Expectations")
-                        .HasMaxLength(1500)
-                        .HasColumnType("varchar(1500)");
-
-                    b.Property<string>("Improvements")
-                        .HasMaxLength(1500)
-                        .HasColumnType("varchar(1500)");
-
-                    b.Property<string>("OtherReasons")
-                        .HasMaxLength(1500)
-                        .HasColumnType("varchar(1500)");
-
-                    b.Property<string>("Reasons")
-                        .HasMaxLength(1500)
-                        .HasColumnType("varchar(1500)");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Subscription");
-                });
-
             modelBuilder.Entity("MySQLDB.Entities.TrackEmail", b =>
                 {
                     b.Property<int>("Id")
@@ -354,10 +304,8 @@ namespace MySQLDB.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("DATETIME");
 
-                    b.Property<string>("UserEmail")
-                        .IsRequired()
-                        .HasMaxLength(333)
-                        .HasColumnType("varchar(333)");
+                    b.Property<int>("UserEmail")
+                        .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -461,10 +409,6 @@ namespace MySQLDB.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
-
-                    b.Property<string>("FirstInterests")
-                        .HasMaxLength(333)
-                        .HasColumnType("varchar(333)");
 
                     b.Property<string>("FirstNames")
                         .HasMaxLength(200)
@@ -621,9 +565,6 @@ namespace MySQLDB.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("ValidTo")
-                        .HasColumnType("DATETIME");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
@@ -727,17 +668,6 @@ namespace MySQLDB.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("MySQLDB.Entities.Subscription", b =>
-                {
-                    b.HasOne("MySQLDB.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("MySQLDB.Entities.TrackEmail", b =>

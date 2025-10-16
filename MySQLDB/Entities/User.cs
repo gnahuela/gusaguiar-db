@@ -39,5 +39,8 @@ namespace MySQLDB.Entities
         public string? ConfirmationToken { get; set; }
 
         public DateTime? TokenExpiresAt { get; set; }
+
+        [MaxLength(333)]
+        public string? FirstInterests { get; set; }
     }
 }

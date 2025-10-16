@@ -19,6 +19,10 @@ namespace MySQLDB.Persistance
 
         public DbSet<UserEmail> UserEmails { get; set; }
 
+        public DbSet<TrackEmail> TrackEmails { get; set; }
+
+        public DbSet<Subscription> Subscriptions { get; set; }
+
         #region Es
 
         public DbSet<EsProduct> EsProducts { get; set; }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MySQLDB.Persistance;
 
@@ -10,9 +11,11 @@ using MySQLDB.Persistance;
 namespace MySQLDB.Migrations
 {
     [DbContext(typeof(CDotsContext))]
-    partial class CDotsContextModelSnapshot : ModelSnapshot
+    [Migration("20251011204630_subscription")]
+    partial class subscription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -354,10 +357,8 @@ namespace MySQLDB.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("DATETIME");
 
-                    b.Property<string>("UserEmail")
-                        .IsRequired()
-                        .HasMaxLength(333)
-                        .HasColumnType("varchar(333)");
+                    b.Property<int>("UserEmail")
+                        .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -461,10 +462,6 @@ namespace MySQLDB.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
-
-                    b.Property<string>("FirstInterests")
-                        .HasMaxLength(333)
-                        .HasColumnType("varchar(333)");
 
                     b.Property<string>("FirstNames")
                         .HasMaxLength(200)
